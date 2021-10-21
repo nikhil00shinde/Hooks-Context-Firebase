@@ -4,18 +4,19 @@ let App = () => {
 	let [count, setCount] = useState(0);
 
 	console.log("render was called");
-	// clean up function case 1
-	// useEffect ke har case mei function karta hain
-	// firt render pe useEffect se clean-up function return hoga
-	// fir second re-render pe pehle clean-up function chalega then useEffect chalega
-	// ye process continue hogi aage tak
+	
+	// This is case 2 for clean up
+	// in this case useEffect will only execute once and return a clean up function
+	// but we don't have other useEffect which will execute
+	// and we know clean up works before execution of useEffect
+	// so in this case the clean up execute when the component is getting unmounted from the screen
 	useEffect(() => {
-		console.log("case 2 useEffect was called");
+		console.log("case 1 useEffect was called");
 
 		return () => {
 			console.log("clean up function");
 		};
-	});
+	}, []);
 
 	return (
 		<div>
